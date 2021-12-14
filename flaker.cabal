@@ -2,19 +2,12 @@ cabal-version:      2.4
 name:               flaker
 version:            0.1.0.0
 license:            MIT
-copyright:          2021 Sridhar Ratnakumar
-maintainer:         srid@srid.ca
-author:             Sridhar Ratnakumar
-category:           Web
-
--- TODO: Before hackage release.
--- A short (one-line) description of the package.
+copyright:          2021 Sofia M.A
+maintainer:         sofia.ma@protonmail.com
+author:             Sofia M.A
+-- category:         
 -- synopsis:
-
--- A longer description of the package.
 -- description:
-
--- A URL where users can report bugs.
 -- bug-reports:
 
 extra-source-files:
@@ -23,19 +16,16 @@ extra-source-files:
 
 executable flaker
   build-depends:
-    , aeson
-    , async
     , base
     , bytestring
     , containers
-    , data-default
-    , directory
-    , filepath
-    , lens
-    , megaparsec
-    , monad-logger
+    -- directory
+    , filepath-bytestring
+    -- lens
+    -- megaparsec
+    -- monad-logger
     , mtl
-    , neat-interpolation
+    -- neat-interpolation
     , profunctors
     , relude
     , shower
@@ -54,15 +44,60 @@ executable flaker
     -Wall -Wincomplete-record-updates -Wincomplete-uni-patterns
 
   default-extensions:
-    FlexibleContexts
-    FlexibleInstances
+    ApplicativeDo
+    BangPatterns
+    BinaryLiterals
+    BlockArguments
+    ConstrainedClassMethods
+    ConstraintKinds
+    DataKinds
+    DefaultSignatures
+    -- DeriveAnyClass
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    EmptyCase
+    EmptyDataDecls
+    EmptyDataDeriving
+    ExistentialQuantification
+    ExplicitForAll
+    ExplicitNamespaces
+    FunctionalDependencies
+    GADTs
+    GeneralisedNewtypeDeriving
+    HexFloatLiterals
+    InstanceSigs
     KindSignatures
     LambdaCase
+    LiberalTypeSynonyms
+    MonadComprehensions
+    NoMonomorphismRestriction
     MultiParamTypeClasses
     MultiWayIf
+    NegativeLiterals
+    NumDecimals
+    NumericUnderscores
+    OverloadedLists
     OverloadedStrings
+    ParallelListComp
+    PartialTypeSignatures
+    PatternGuards
+    PatternSynonyms
+    PolyKinds
+    RankNTypes
     ScopedTypeVariables
+    StandaloneDeriving
+    NoStarIsType
     TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeFamilyDependencies
+    TypeInType
+    TypeOperators
+    UnicodeSyntax
     ViewPatterns
 
   main-is:            Main.hs
