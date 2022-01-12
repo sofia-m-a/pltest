@@ -1,5 +1,5 @@
 {
-  description = "flaker's description";
+  description = "pltest";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/2df15ba83d0510a56f2583fd3481723835acb5a1";
     flake-utils.url = "github:numtide/flake-utils";
@@ -32,7 +32,7 @@
         project = returnShellEnv:
           pkgs.haskellPackages.developPackage {
             inherit returnShellEnv;
-            name = "flaker";
+            name = "pltest";
             root = ./.;
             withHoogle = false;
             overrides = self: super: with pkgs.haskell.lib; {

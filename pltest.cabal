@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               flaker
+name:               sofialisp
 version:            0.1.0.0
 license:            MIT
 copyright:          2021 Sofia M.A
@@ -18,22 +18,20 @@ executable flaker
   build-depends:
     , base
     , bytestring
+    , charset
     , containers
-    -- directory
-    , filepath-bytestring
-    -- lens
-    -- megaparsec
-    -- monad-logger
+    , functor-combinators
+    , lens
     , mtl
-    -- neat-interpolation
+    , optparse-applicative
     , profunctors
     , relude
     , shower
+    , streamly
     , tagged
     , text
     , time
-    , unliftio
-    , with-utf8
+    , trifecta
 
   mixins:
     base hiding (Prelude),
@@ -52,7 +50,6 @@ executable flaker
     ConstraintKinds
     DataKinds
     DefaultSignatures
-    -- DeriveAnyClass
     DeriveFoldable
     DeriveFunctor
     DeriveGeneric
