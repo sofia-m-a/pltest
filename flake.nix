@@ -8,18 +8,22 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    souffle-haskell.url = "github:luc-tielen/souffle-haskell";
   };
-  outputs = inputs@{ self, nixpkgs, flake-utils, ... }:
+  outputs = inputs@{ self, nixpkgs, flake-utils, souffle-haskell, ... }:
     flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ] (system:
       let
-        souffle-repo = builtins.fetchGit {
-          url = "https://github.com/luc-tielen/souffle-haskell";
-          rev = "08ba954243c7e44f84756ca7d5a74a84bfdebe69";
-        };
-      	souffle-overlay = self: super: {
-      	  souffle = self.callPackage "${souffle-repo}/nix/souffle.nix" { };
-      	};
-        overlays = [ souffle-overlay ];
+        overlays = [ ]
+          ++ souffle-haskell.overlays.${system} # bring in souffle/souffle-haskell
+          ++ [ (self: super: {
+                 haskellPackages = super.haskellPackages.override {
+                   overrides = hself: hsuper: {
+                     souffle-haskell = super.souffle-haskell;
+                   };
+                 };
+               })
+             ] # this overlay is necessary because github:luc-tielen/souffle-haskell doesn't stick these in haskellPackages
+          ;
         pkgs =
           import nixpkgs { inherit system overlays; config.allowBroken = true; };
 
@@ -45,21 +49,21 @@
             root = ./.;
             withHoogle = false;
             overrides = self: super: with pkgs.haskell.lib; {
-            	
+
             };
             modifier = drv:
               pkgs.haskell.lib.addBuildTools drv
                 (with (if system == "aarch64-darwin"
                 then m1MacHsBuildTools
                 else pkgs.haskellPackages); [
-                  # Specify your build/dev dependencies here. 
+                  # Specify your build/dev dependencies here.
                   cabal-fmt
                   cabal-install
                   ghcid
                   haskell-language-server
                   ormolu
                   pkgs.souffle
-                  
+
                   pkgs.nixpkgs-fmt
                 ]);
           };
