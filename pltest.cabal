@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               sofialisp
+name:               pltest
 version:            0.1.0.0
 license:            MIT
 copyright:          2021 Sofia M.A
@@ -20,18 +20,25 @@ executable flaker
     , bytestring
     , charset
     , containers
+    , data-fix
     , functor-combinators
+    , haskeline
     , lens
     , mtl
     , optparse-applicative
+    , prettyprinter
     , profunctors
+    , recursion-schemes
     , relude
     , shower
     , streamly
+    -- , souffle-dsl
+    , souffle-haskell
     , tagged
     , text
     , time
     , trifecta
+    , witherable
 
   mixins:
     base hiding (Prelude),
